@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# next.js / build
+.next/
+out/
+build/
+dist/
+coverage/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# debug / OS / IDE
+.DS_Store
+Thumbs.db
+Desktop.ini
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.tsbuildinfo
+.idea/
+*.swp
+*.swo
+
+# vercel
+.vercel
+
+# NOTE: .agent-logs/ must NEVER be ignored — 8x assignment requires committing capture logs
