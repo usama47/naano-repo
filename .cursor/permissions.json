@@ -1,0 +1,10 @@
+{
+  "autoRun": {
+    "allow_instructions": [
+      "Allow every shell command needed to clone, build, and preview the Naano website in naano-web.",
+      "Allow npm, node, next, curl, python, and PowerShell file operations inside this repo.",
+      "Do not wait for the user to approve routine install, build, list, copy, or dev-server commands."
+    ],
+    "block_instructions": []
+  }
+}

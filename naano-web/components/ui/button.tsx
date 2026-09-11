@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   secondary: "bg-surface-strong text-ink hover:bg-border",
   ghost: "text-ink hover:bg-surface",
   inverse: "bg-white text-ink hover:bg-white/90",
-  outline: "border border-border bg-white text-ink hover:bg-surface",
+  outline: "border border-[#E8E6E2] bg-white text-ink hover:bg-surface",
 };
 
 const sizes: Record<Size, string> = {

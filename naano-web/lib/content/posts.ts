@@ -1,0 +1,65 @@
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+};
+
+export const posts: Post[] = [
+  { slug: "b2b-influencer-marketing-cost", title: "B2B Influencer Marketing Cost in 2026: What Posts Really Sell For", excerpt: "Median per-post prices on Naano by follower band." },
+  { slug: "launch-b2b-linkedin-creator-campaign", title: "Launch a B2B LinkedIn Creator Campaign in 30 Days", excerpt: "A practical 30-day launch plan." },
+  { slug: "linkedin-creator-marketplace-europe", title: "LinkedIn Creator Marketplace in Europe: what B2B brands can use today", excerpt: "How European teams buy creator inventory." },
+  { slug: "how-to-pay-b2b-creators", title: "How to pay B2B creators: contracts, approvals and platform payouts", excerpt: "Contracts, VAT, and 24h payouts." },
+  { slug: "linkedin-creator-marketplace-explained", title: "LinkedIn Creator Marketplace explained", excerpt: "What it does and what it does not." },
+  { slug: "what-is-a-b2b-creator-marketplace", title: "What Is a B2B Creator Marketplace? Definition + 2026 Prices", excerpt: "Definition and current price bands." },
+  { slug: "creator-led-growth-b2b", title: "Creator-led growth: the complete B2B playbook (2026)", excerpt: "The full playbook for paid creator distribution." },
+  { slug: "linkedin-ads-vs-creator-led-cpl", title: "LinkedIn Ads vs creator-led CPL", excerpt: "Cost per lead compared." },
+  { slug: "nano-vs-macro-creators-b2b-ctr", title: "Nano vs macro creators in B2B", excerpt: "CTR and trust by follower count." },
+  { slug: "b2b-influence-linkedin", title: "B2B influence on LinkedIn", excerpt: "Why niche voices outperform brand pages." },
+  { slug: "founder-led-distribution-b2b-saas", title: "Founder-led distribution for SaaS", excerpt: "When founders should post vs hire." },
+  { slug: "naano-vs-alternatives", title: "Naano vs alternatives", excerpt: "Marketplace vs ads, UGC, and advocacy." },
+  { slug: "b2b-creator-campaign-tracking-template", title: "B2B Creator Campaign Tracking Template (2026)", excerpt: "The fields that make ROI measurable." },
+  { slug: "linkedin-sponsored-post-usage-rights", title: "LinkedIn Sponsored Post Usage Rights (2026)", excerpt: "What you can reuse after the post goes live." },
+  { slug: "how-to-find-brand-deals-on-linkedin", title: "How to Find Brand Deals on LinkedIn (2026)", excerpt: "A creator's sourcing guide." },
+  { slug: "modash-alternative-b2b-linkedin", title: "Modash Alternative for B2B LinkedIn (2026)", excerpt: "When a marketplace beats a database." },
+  { slug: "ai-search-cites-people-not-brands", title: "AI Search Cites People, Not Your Brand Page (2026)", excerpt: "Why citations accrue to creators." },
+  { slug: "how-long-b2b-creator-campaign-takes", title: "How Long a B2B Creator Campaign Takes (2026 Data)", excerpt: "Brief to live post timelines." },
+  { slug: "sponsored-post-brief-to-published-playbook", title: "The 7 Days After You Accept a Sponsored Post (2026)", excerpt: "Creator delivery playbook." },
+  { slug: "naano-vs-passionfroot", title: "Naano vs Passionfroot", excerpt: "LinkedIn marketplace or multi-channel OS." },
+  { slug: "b2b-creator-campaigns-europe-answers", title: "B2B creator campaigns in Europe: 15 answers (2026)", excerpt: "EU-specific buying questions." },
+  { slug: "linkedin-creator-discount-trap", title: "The discount trap for LinkedIn creators (2026)", excerpt: "Why cutting rates destroys yield." },
+  { slug: "linkedin-sponsored-post-price-index-2026", title: "LinkedIn sponsored post price index 2026", excerpt: "Naano index by follower band." },
+  { slug: "how-much-charge-sponsored-linkedin-post", title: "How much to charge for a sponsored LinkedIn post (2026)", excerpt: "Pricing for creators." },
+  { slug: "how-to-choose-b2b-influencer-marketing-platform", title: "How to choose a B2B influencer marketing platform (2026)", excerpt: "A buyer checklist." },
+  { slug: "linkedin-engagement-rate-benchmarks", title: "LinkedIn Engagement Rate Benchmarks 2026", excerpt: "By follower count." },
+  { slug: "linkedin-thought-leader-ads-vs-creator-posts", title: "LinkedIn Thought Leader Ads vs Creator Posts (2026)", excerpt: "Boosted employee posts vs marketplace." },
+  { slug: "sponsored-linkedin-post-cost-b2b", title: "Sponsored LinkedIn post cost in 2026: B2B rate guide", excerpt: "What brands actually pay." },
+  { slug: "best-b2b-creator-marketplace", title: "Best B2B creator marketplaces in 2026", excerpt: "LinkedIn-first ranking." },
+  { slug: "get-paid-for-linkedin-posts-creator", title: "How to get paid for LinkedIn posts as a B2B creator (2026)", excerpt: "From rate card to payout." },
+  { slug: "naano-vs-kolsquare", title: "Naano vs Kolsquare", excerpt: "Marketplace or European influencer platform." },
+  { slug: "naano-vs-skeepers", title: "Naano vs Skeepers", excerpt: "Marketplace or UGC engine." },
+  { slug: "naano-vs-traackr", title: "Naano vs Traackr", excerpt: "Marketplace or enterprise IM." },
+  { slug: "linkedin-creator-marketplace-vs-naano", title: "LinkedIn Creator Marketplace vs Naano", excerpt: "What B2B teams in Europe should know." },
+  { slug: "creator-led-growth-90-day-playbook", title: "The 90-Day Creator-Led Growth Playbook for B2B SaaS", excerpt: "Quarter-long operating cadence." },
+  { slug: "forecast-b2b-pipeline-creator-cpc", title: "How to Forecast B2B Pipeline From a Creator Click Budget", excerpt: "Before you spend a euro." },
+  { slug: "linkedin-dwell-time-b2b-creators", title: "LinkedIn Dwell Time in 2026: What Affects Reach", excerpt: "Dwell as a ranking signal." },
+  { slug: "cpc-vs-flat-fee-b2b-creator-sponsorship", title: "CPC vs flat-fee B2B creator sponsorships", excerpt: "Which model protects budget." },
+  { slug: "creator-led-growth-vs-cold-outbound-b2b", title: "Creator-led growth vs cold outbound", excerpt: "Which fits your motion." },
+  { slug: "linkedin-outbound-creator-stack", title: "Outbound Isn't Enough: Building a LinkedIn Growth Stack", excerpt: "Creators plus outbound." },
+  { slug: "micro-creator-portfolio-b2b-saas", title: "Why a portfolio of micro-creators beats one big LinkedIn name", excerpt: "Diversify the roster." },
+  { slug: "b2b-influencer-agency-vs-platform", title: "B2B influencer agency vs platform", excerpt: "When to hire vs self-serve." },
+  { slug: "how-to-find-b2b-creators-linkedin", title: "How to find B2B creators on LinkedIn", excerpt: "A practical sourcing guide." },
+  { slug: "employee-advocacy-vs-creator-led-growth", title: "LinkedIn employee advocacy vs creator-led growth", excerpt: "Where each one wins." },
+  { slug: "measure-roi-b2b-creator-marketing-linkedin", title: "How to measure the ROI of B2B creator marketing on LinkedIn", excerpt: "Clicks to pipeline." },
+  { slug: "founder-diy-vs-hiring-creators", title: "Should B2B founders post themselves or hire creators?", excerpt: "A decision framework." },
+  { slug: "how-to-write-b2b-sponsored-post", title: "How to write a B2B sponsored post that converts", excerpt: "With examples." },
+  { slug: "linkedin-algorithm-2026-creators-vs-brands", title: "How LinkedIn's algorithm rewards creators over brands in 2026", excerpt: "Distribution physics." },
+  { slug: "naano-vs-favikon", title: "Naano vs Favikon", excerpt: "Marketplace or analytics." },
+  { slug: "naano-vs-gaggleamp", title: "Naano vs GaggleAMP", excerpt: "External creators vs advocacy." },
+  { slug: "naano-vs-influitive", title: "Naano vs Influitive", excerpt: "Creators vs advocate marketing." },
+  { slug: "naano-vs-lemlist", title: "Naano vs Lemlist", excerpt: "Creator-led vs cold outreach." },
+  { slug: "naano-vs-upfluence", title: "Naano vs Upfluence", excerpt: "Enterprise IM vs LinkedIn marketplace." },
+];
+
+export function getPost(slug: string) {
+  return posts.find((post) => post.slug === slug);
+}

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
@@ -15,20 +15,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "naano — book B2B creators at a flat price per post",
-    template: "%s — naano",
+    default: "Naano: B2B LinkedIn Creator Marketplace",
+    template: "%s | Naano",
   },
   description:
-    "Find vetted B2B creators, brief them in minutes, and trace every click and lead back to the post that produced it. Flat price per post, payouts handled.",
+    "Naano helps B2B SaaS brands run fixed-price LinkedIn creator campaigns and trace attributed clicks and leads back to each post.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${jakarta.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-white text-ink">
         <Providers>{children}</Providers>
       </body>
     </html>

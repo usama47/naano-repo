@@ -1,10 +1,12 @@
-import { DashboardNav } from "@/components/dashboard/shell";
+import { DashboardShell } from "@/components/dashboard/shell";
+import { SessionProvider } from "@/components/dashboard/session";
+import { getSessionUser } from "@/lib/session";
 
-export default function DashboardLayout({ children }: LayoutProps<"/dashboard">) {
+export default async function DashboardLayout({ children }: LayoutProps<"/dashboard">) {
+  const user = await getSessionUser();
   return (
-    <div className="flex min-h-screen flex-1 flex-col bg-surface lg:flex-row">
-      <DashboardNav />
-      <main className="flex-1 px-5 py-8 lg:px-10">{children}</main>
-    </div>
+    <SessionProvider user={user}>
+      <DashboardShell user={user}>{children}</DashboardShell>
+    </SessionProvider>
   );
 }

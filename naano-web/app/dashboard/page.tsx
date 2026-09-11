@@ -1,154 +1,140 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { AttributionChart } from "@/components/dashboard/attribution-chart";
-import { Kpi } from "@/components/dashboard/kpi";
-import { Avatar, Badge, Card } from "@/components/ui/primitives";
-import { COLLABORATION_LABELS, campaigns, workspaceTotals } from "@/lib/data/campaigns";
-import { formatCompact, formatEur, formatNumber } from "@/lib/utils";
+import {
+  BarChart3,
+  Check,
+  ChevronRight,
+  Copy,
+  ExternalLink,
+  FileText,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import { CopyLink } from "@/components/dashboard/copy-link";
+import { CreatorCardPreview } from "@/components/dashboard/creator-card-preview";
+import {
+  cardUrl,
+  launchGuide,
+  overviewStats,
+} from "@/lib/data/creator-app";
+import { getSessionUser } from "@/lib/session";
 
 export const metadata = { title: "Overview" };
 
-export default function DashboardPage() {
-  const totals = workspaceTotals();
-  const live = campaigns.find((campaign) => campaign.status === "live") ?? campaigns[0];
+const kpiIcons = {
+  reach: BarChart3,
+  posts: FileText,
+  engagements: TrendingUp,
+  followers: Users,
+} as const;
 
-  const topPosts = campaigns
-    .flatMap((campaign) =>
-      campaign.collaborations
-        .filter((collab) => collab.status === "published")
-        .map((collab) => ({ ...collab, campaignName: campaign.name })),
-    )
-    .sort((a, b) => b.leads - a.leads)
-    .slice(0, 5);
-
-  const pending = campaigns
-    .flatMap((campaign) =>
-      campaign.collaborations
-        .filter((collab) => collab.status !== "published")
-        .map((collab) => ({ ...collab, campaignId: campaign.id })),
-    )
-    .slice(0, 4);
+export default async function DashboardPage() {
+  const user = await getSessionUser();
+  const firstName = user?.firstName ?? "there";
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="display text-3xl font-semibold">Overview</h1>
-          <p className="mt-2 text-sm text-muted">
-            Attributed results across {campaigns.length} campaigns and {totals.postsLive} published
-            posts.
-          </p>
-        </div>
-        <Link
-          href="/dashboard/campaigns"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-strong hover:underline"
-        >
-          All campaigns
-          <ArrowUpRight className="size-4" />
-        </Link>
-      </div>
+    <div className="mx-auto max-w-[1080px]">
+      <p className="text-[13px] text-[#8b93a7]">Creator workspace</p>
+      <h1 className="mt-1 text-[32px] font-semibold tracking-tight text-ink">
+        Good to see you, {firstName}
+      </h1>
+      <p className="mt-1.5 text-[15px] text-[#8b93a7]">Your creator activity, at a glance.</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Kpi
-          label="Impressions"
-          value={formatCompact(totals.impressions)}
-          delta={18}
-          hint="Across all published posts"
-        />
-        <Kpi
-          label="Qualified clicks"
-          value={formatNumber(totals.qualifiedClicks)}
-          delta={11}
-          hint="30s+ on-site engagement"
-        />
-        <Kpi
-          label="Attributed leads"
-          value={formatNumber(totals.leads)}
-          delta={9}
-          hint={`${formatEur(totals.costPerLead)} per lead`}
-        />
-        <Kpi
-          label="Spend"
-          value={formatEur(totals.spend)}
-          delta={-4}
-          hint={`${formatEur(totals.costPerQualifiedClick)} per qualified click`}
-        />
+        {overviewStats.map((stat) => {
+          const Icon = kpiIcons[stat.icon];
+          return (
+            <div
+              key={stat.key}
+              className="rounded-[24px] border border-[#edf0f5] bg-white px-5 py-4"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="flex items-baseline gap-2">
+                    <p className="text-[22px] font-semibold tracking-tight tabular-nums">
+                      {stat.value}
+                    </p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#9aa3b5]">
+                      {stat.label}
+                    </p>
+                  </div>
+                  <p className="mt-3 text-[13px] text-[#8b93a7]">{stat.hint}</p>
+                </div>
+                <Icon className="size-4 shrink-0 text-[#c5cad6]" strokeWidth={1.75} />
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <Card className="mt-6 p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="font-semibold">{live.name}</p>
-            <p className="mt-1 text-sm text-muted">{live.objective}</p>
-          </div>
-          <Badge tone={live.status === "live" ? "success" : "neutral"}>
-            {live.status === "live" ? "Live" : "Completed"}
-          </Badge>
-        </div>
-        <div className="mt-6">
-          <AttributionChart series={live.timeseries} />
-        </div>
-      </Card>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <Card className="overflow-hidden">
-          <div className="border-b border-border px-6 py-4">
-            <p className="font-semibold">Best performing posts</p>
-          </div>
-          <table className="w-full text-sm">
-            <thead className="bg-surface text-left text-xs uppercase tracking-wide text-muted">
-              <tr>
-                <th className="px-6 py-3 font-medium">Creator</th>
-                <th className="px-6 py-3 font-medium">Clicks</th>
-                <th className="px-6 py-3 font-medium">Leads</th>
-                <th className="px-6 py-3 font-medium">Cost / lead</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {topPosts.map((post) => (
-                <tr key={post.id}>
-                  <td className="px-6 py-4">
-                    <Link
-                      href={`/marketplace/${post.creatorSlug}`}
-                      className="flex items-center gap-3 hover:underline"
-                    >
-                      <Avatar name={post.creatorName} size="sm" />
-                      <span>
-                        <span className="block font-medium">{post.creatorName}</span>
-                        <span className="block text-xs text-muted">{post.campaignName}</span>
-                      </span>
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4 tabular-nums">{formatNumber(post.qualifiedClicks)}</td>
-                  <td className="px-6 py-4 font-medium tabular-nums">{post.leads}</td>
-                  <td className="px-6 py-4 tabular-nums text-muted">
-                    {post.leads ? formatEur(post.fee / post.leads) : "—"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
-
-        <Card className="p-6">
-          <p className="font-semibold">Waiting on you</p>
-          <div className="mt-4 space-y-3">
-            {pending.map((collab) => (
+      <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+        <section className="rounded-[24px] border border-[#edf0f5] bg-white p-5 sm:p-6">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h2 className="text-[16px] font-semibold">Your creator card</h2>
+              <p className="mt-1 max-w-sm text-[13px] leading-5 text-[#8b93a7]">
+                This is how brands discover your positioning and collaboration offer.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
               <Link
-                key={collab.id}
-                href={`/dashboard/campaigns/${collab.campaignId}`}
-                className="flex items-center gap-3 rounded-2xl border border-border p-3 hover:bg-surface"
+                href="/dashboard/card"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full px-2.5 text-[13px] text-[#8b93a7] hover:text-ink"
               >
-                <Avatar name={collab.creatorName} size="sm" />
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">{collab.creatorName}</p>
-                  <p className="text-xs text-muted">{COLLABORATION_LABELS[collab.status]}</p>
-                </div>
-                <p className="text-sm tabular-nums text-muted">{formatEur(collab.fee)}</p>
+                Open card
+                <ExternalLink className="size-3.5" />
               </Link>
-            ))}
+              <CopyLink
+                value={cardUrl}
+                className="inline-flex h-8 items-center gap-1.5 rounded-full px-2.5 text-[13px] text-[#8b93a7] hover:text-ink"
+              >
+                <Copy className="size-3.5" />
+                Copy card link
+              </CopyLink>
+              <CopyLink
+                value={cardUrl}
+                className="inline-flex h-8 items-center rounded-full bg-[#2f6bff] px-3 text-[13px] font-medium text-white hover:bg-[#2458e6]"
+              >
+                Share my card
+              </CopyLink>
+            </div>
           </div>
-        </Card>
+          <div className="mx-auto mt-5 max-w-[360px]">
+            <CreatorCardPreview />
+          </div>
+        </section>
+
+        <section className="rounded-[24px] border border-[#edf0f5] bg-white p-5 sm:p-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="text-[16px] font-semibold">Your launch guide</h2>
+              <p className="mt-1 text-[13px] text-[#8b93a7]">
+                {launchGuide.complete} of {launchGuide.total} steps complete
+              </p>
+            </div>
+            <Link href={launchGuide.href} className="text-[13px] font-medium text-[#4c6fff]">
+              Open card
+            </Link>
+          </div>
+
+          <Link
+            href={launchGuide.href}
+            className="mt-6 flex items-center gap-3 rounded-2xl py-2"
+          >
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#e2f5ea] text-success">
+              <Check className="size-3.5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[14px] font-medium">{launchGuide.step.title}</span>
+              <span className="mt-0.5 block text-[13px] text-[#8b93a7]">
+                {launchGuide.step.body}
+              </span>
+            </span>
+            <span className="rounded-full bg-[#e8f8ef] px-2.5 py-1 text-[12px] font-medium text-success">
+              {launchGuide.step.status}
+            </span>
+            <ChevronRight className="size-4 text-[#c5cad6]" />
+          </Link>
+        </section>
       </div>
     </div>
   );

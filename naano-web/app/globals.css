@@ -2,20 +2,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0b0b12;
+  --foreground: #17181c;
 
-  --surface: #f7f7fb;
-  --surface-strong: #eeeef6;
-  --border: #e4e4ef;
+  --surface: #f6f5f3;
+  --surface-strong: #eeece8;
+  --border: #e8e6e2;
 
-  --muted: #6b6b80;
+  --muted: #6b6f76;
 
-  --brand: #4b3bff;
-  --brand-strong: #3325e6;
-  --brand-soft: #efedff;
+  --brand: #2f6bff;
+  --brand-strong: #2458e6;
+  --brand-soft: #eef3ff;
 
-  --ink: #0b0b12;
-  --ink-soft: #16161f;
+  --ink: #17181c;
+  --ink-soft: #2a2b31;
+
+  --sky: #d7eefc;
+  --sky-mid: #eaf6fd;
+  --auth: #2f6bff;
 
   --success: #12a150;
   --warning: #c2761a;
@@ -33,33 +37,47 @@
   --color-brand-soft: var(--brand-soft);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-sky: var(--sky);
+  --color-sky-mid: var(--sky-mid);
+  --color-auth: var(--auth);
   --color-success: var(--success);
   --color-warning: var(--warning);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-jakarta);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
-/* Display headings are tightly tracked, mirroring the marketing site. */
 .display {
-  letter-spacing: -0.035em;
-  line-height: 1.02;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  font-weight: 700;
   text-wrap: balance;
 }
 
-.grain {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgb(255 255 255 / 0.07) 1px,
-    transparent 0
-  );
-  background-size: 22px 22px;
+.sky-photo {
+  background-color: #cfeafb;
+  background-image: url("/lp/hero-clouds-cotton-blue-v7.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.sky-fade {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 78%),
+    url("/lp/hero-clouds-cotton-blue-v7.png") center top / cover no-repeat;
+}
+
+.sky-footer {
+  background:
+    linear-gradient(180deg, #ffffff 0%, rgba(215, 238, 252, 0.55) 28%, #d7eefc 100%),
+    url("/lp/hero-clouds-cotton-blue-v7.png") center bottom / cover no-repeat;
 }
 
 @keyframes marquee {
@@ -79,4 +97,8 @@ body {
   .animate-marquee {
     animation: none;
   }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }

@@ -37,18 +37,31 @@ export function Badge({
 
 export function Avatar({
   name,
+  src,
   size = "md",
   className,
 }: {
   name: string;
-  size?: "sm" | "md" | "lg";
+  src?: string;
+  size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 }) {
   const sizes = {
     sm: "size-8 text-xs",
     md: "size-11 text-sm",
     lg: "size-16 text-lg",
+    xl: "size-20 text-xl",
   } as const;
+
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt=""
+        className={cn("shrink-0 rounded-full object-cover", sizes[size], className)}
+      />
+    );
+  }
 
   return (
     <span
