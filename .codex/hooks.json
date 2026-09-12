@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node scripts/capture-codex.mjs", "timeout": 10 }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "node scripts/capture-codex.mjs", "timeout": 10 }] }]
+  }
+}

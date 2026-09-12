@@ -33,3 +33,6 @@ yarn-error.log*
 .vercel
 
 # NOTE: .agent-logs/ must NEVER be ignored — 8x assignment requires committing capture logs
+
+next-env.d.ts
+.audit/
