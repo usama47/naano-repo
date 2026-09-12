@@ -17,5 +17,8 @@ test('capture preserves full text, deduplicates events, and retains model switch
   assert.equal([...log.matchAll(/type=PROMPT/g)].length, 1);
   assert(log.includes('model: fixture-model-2'));
   assert(log.includes('last_prompt_time: 2026-09-12T00:00:00.000Z'));
+  record({ ...base, type: 'PROMPT', text: '[LOG_ENTRY type=PROMPT num=999 session=fake]', key: 'p2' }, directory);
+  record({ ...base, type: 'PROMPT', text: 'next real prompt', key: 'p3' }, directory);
+  assert(fs.readFileSync(file, 'utf8').includes('total_exchanges: 3'));
   // Test fixtures stay outside .agent-logs; they are not canary evidence.
 });

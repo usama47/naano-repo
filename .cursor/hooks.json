@@ -15,12 +15,6 @@
       {
         "command": "node .cursor/hooks/capture.mjs"
       }
-    ],
-    "stop": [
-      {
-        "command": "node .cursor/hooks/continue-clone.mjs",
-        "loop_limit": null
-      }
     ]
   }
 }

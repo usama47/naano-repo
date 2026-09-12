@@ -21,7 +21,8 @@ export function record(entry, directory = path.join(root, '.agent-logs')) {
   let content = fs.readFileSync(target, 'utf8');
   const marker = `<!-- capture-event: ${Buffer.from(key).toString('base64url')} -->`;
   if (content.includes(marker)) return target;
-  const count = [...content.matchAll(/^\[LOG_ENTRY type=PROMPT /gm)].length;
+  const frontmatterEnd = content.indexOf("\n---\n", 4);
+  const count = Number(content.slice(0, frontmatterEnd).match(/^total_exchanges: (\d+)$/m)?.[1] || 0);
   if (type === 'RESPONSE' && count === 0) throw new Error('Response has no captured prompt');
   const num = type === 'PROMPT' ? count + 1 : count;
   fs.appendFileSync(target, `\n\n---\n\n${marker}\n[LOG_ENTRY type=${type} num=${num} session=${session.slice(0, 8)}]\ntimestamp: ${timestamp}\nmodel: ${model}\n\n${text}\n`);
